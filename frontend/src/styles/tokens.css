@@ -1,0 +1,94 @@
+/* =============================================================================
+   Récord de Catedráticos — Design tokens
+   Fuente: design_handoff_record_catedraticos/README.md ("Design Tokens")
+   ============================================================================= */
+
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato/Lato-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Colores — app general */
+  --color-orange-title: #ea580c;
+  --color-orange-hover: #c2410c;
+  --color-orange-tint: #fdece1;
+  --color-amber-subtitle: #df9014;
+  --color-slate-section: #1f2937;
+  --color-ink: #212529;
+  --neutral-600: #43474d;
+  --neutral-500: #5f6368;
+  --neutral-400: #7f7f7f;
+  --neutral-300: #b7b9bd;
+  --neutral-200: #d8d9db;
+  --neutral-100: #ececee;
+  --neutral-50: #f7f7f8;
+  --color-surface: #ffffff;
+
+  /* Colores — malla de la red de estudios (no mezclar con los de arriba) */
+  --course-bg: #fcd2b4;
+  --course-prereq-bg: #f79645;
+  --course-credits-bg: #fabf8e;
+  --course-text: #231f20;
+  --area-metodologia: #31869a;
+  --area-desarrollo: #76933b;
+  --area-ciencias: #ffc000;
+
+  /* Overlays de estado sobre un tile de curso */
+  --status-aprobado-overlay: rgba(29, 120, 66, 0.45);
+  --status-aprobado-mark: #166534;
+  --status-cursando-overlay: rgba(23, 84, 166, 0.42);
+  --status-cursando-mark: #1754a6;
+
+  /* Tipografía */
+  --font-sans: 'Lato', -apple-system, Helvetica, Arial, sans-serif;
+
+  /* Espaciado (escala de 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radios */
+  --radius-card: 8px;
+  --radius-modal: 10px;
+  --radius-control: 4px;
+  --radius-pill: 999px;
+  --radius-tile: 3px;
+
+  /* Sombras */
+  --shadow-card: 0 2px 10px rgba(33, 37, 41, 0.06);
+  --shadow-modal: 0 20px 50px rgba(31, 41, 55, 0.35);
+  --shadow-menu: 0 8px 22px rgba(33, 37, 41, 0.22);
+  --shadow-fab: 0 6px 18px rgba(234, 88, 12, 0.35);
+
+  /* Anchos de referencia */
+  --width-screen: 1180px;
+  --width-container: 1120px;
+  --width-feed: 800px;
+}
