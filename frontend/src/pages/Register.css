@@ -1,0 +1,62 @@
+/* Solo lo propio de la pantalla 1e — el resto vive en styles/auth.css */
+
+.register-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.register-logo {
+  height: 36px;
+  width: auto;
+}
+
+.register-brand-rule {
+  width: 1px;
+  height: 32px;
+  background: var(--neutral-100);
+}
+
+.register-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.register-brand-text .auth-university {
+  font-size: 12.5px;
+}
+
+.register-brand-text .auth-faculty {
+  font-size: 12px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.register-field--full {
+  grid-column: 1 / -1;
+}
+
+/* En pantallas angostas las dos columnas no caben (un iPhone 14 son 393px):
+   los 7 campos pasan a una sola columna, uno debajo del otro. */
+@media (max-width: 560px) {
+  .register-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.register-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

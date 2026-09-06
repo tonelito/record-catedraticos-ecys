@@ -1,15 +1,22 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export function getToken() {
-  return localStorage.getItem('token');
+  return localStorage.getItem('token') ?? sessionStorage.getItem('token');
 }
 
-export function setToken(token) {
-  localStorage.setItem('token', token);
+export function setToken(token, remember = true) {
+  if (remember) {
+    localStorage.setItem('token', token);
+    sessionStorage.removeItem('token');
+  } else {
+    sessionStorage.setItem('token', token);
+    localStorage.removeItem('token');
+  }
 }
 
 export function clearToken() {
   localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
 }
 
 async function request(path, { method = 'GET', body } = {}) {

@@ -1,0 +1,143 @@
+/* Estilos compartidos por las pantallas de autenticación (1d, 1e). */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-50);
+  padding: var(--space-6);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  padding: 5%;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* Variante ancha: el registro son 7 campos en dos columnas. */
+.auth-card--wide {
+  max-width: 700px;
+  gap: 24px;
+}
+
+/* En teléfonos, el padding porcentual se queda corto y el de la página roba
+   ancho útil: los dos pasan a valores fijos más generosos con el contenido. */
+@media (max-width: 560px) {
+  .auth-page {
+    padding: var(--space-4);
+  }
+
+  .auth-card {
+    padding: var(--space-5);
+  }
+}
+
+.auth-university {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.auth-faculty {
+  font-size: 13px;
+  color: var(--neutral-400);
+}
+
+.auth-divider {
+  height: 1px;
+  background: var(--neutral-100);
+}
+
+.auth-heading h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--color-orange-title);
+  line-height: 1.15;
+}
+
+.auth-heading p {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--neutral-400);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.auth-field label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+
+.auth-field input {
+  height: 40px;
+  /* Sin esto, el ancho intrínseco del <input> impide que la columna del grid
+     se encoja y la tarjeta se desborda a lo ancho en pantallas angostas. */
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-ink);
+  outline: none;
+}
+
+.auth-field input:focus {
+  border-color: var(--color-orange-title);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.14);
+}
+
+.auth-error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-orange-hover);
+}
+
+.auth-submit {
+  height: 46px;
+  border: none;
+  border-radius: var(--radius-control);
+  background: var(--color-orange-title);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.auth-submit:hover {
+  background: var(--color-orange-hover);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.auth-footer {
+  margin: 0;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--neutral-500);
+}
+
+.auth-footer a {
+  color: var(--color-orange-title);
+  font-weight: 700;
+  text-decoration: none;
+}
