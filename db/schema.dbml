@@ -1,0 +1,150 @@
+// Récord de Catedráticos — ECYS FIUSAC
+// DBML generado a partir de db/001_schema.sql, para visualizar en dbdiagram.io
+// (pegar este archivo completo en https://dbdiagram.io/d)
+
+Enum professor_role {
+  catedratico
+  auxiliar
+}
+
+Enum course_area {
+  metodologia
+  desarrollo
+  ciencias
+}
+
+Enum course_status {
+  aprobado
+  cursando
+  pendiente
+}
+
+Table student {
+  id serial [pk]
+  academic_registration text [not null, unique, note: 'formato 0000-00000']
+  dpi char(13) [not null, unique, note: '13 dígitos']
+  first_name text [not null]
+  last_name text [not null]
+  email text [not null, unique]
+  password_hash text [not null]
+  created_at timestamptz [not null, default: `now()`]
+}
+
+Table professor {
+  id serial [pk]
+  complete_name text [not null]
+  academic_role professor_role [not null, default: 'catedratico']
+}
+
+Table course {
+  code char(4) [pk, note: 'código del pensum, ej. 0770']
+  name text [not null]
+  credits smallint [note: 'NULL en las tres Prácticas']
+  area course_area [note: 'NULL si no tiene franja de color']
+  is_mandatory boolean [not null, default: false]
+  semester smallint [not null, note: '1 a 10']
+}
+
+Table course_prerequisite {
+  course_code char(4) [not null]
+  prerequisite_code char(4) [not null]
+
+  indexes {
+    (course_code, prerequisite_code) [pk]
+  }
+}
+
+Table course_professor {
+  course_code char(4) [not null]
+  professor_id integer [not null]
+
+  indexes {
+    (course_code, professor_id) [pk]
+  }
+}
+
+Table post {
+  id serial [pk]
+  student_id integer [not null]
+  course_code char(4) [not null]
+  professor_id integer [note: 'NULL: post solo sobre el curso']
+  title text [not null]
+  content text [not null]
+  created_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    created_at [name: 'post_created_at_idx']
+    course_code [name: 'post_course_code_idx']
+    professor_id [name: 'post_professor_id_idx']
+  }
+}
+
+Table comment {
+  id serial [pk]
+  post_id integer [not null]
+  student_id integer [not null]
+  parent_comment_id integer [note: 'NULL: comentario de primer nivel']
+  content text [not null]
+  created_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    (post_id, parent_comment_id) [name: 'comment_post_id_parent_id_idx']
+  }
+}
+
+Table post_vote {
+  student_id integer [not null]
+  post_id integer [not null]
+  value smallint [not null, note: '-1 o 1']
+
+  indexes {
+    (student_id, post_id) [pk]
+  }
+}
+
+Table comment_vote {
+  student_id integer [not null]
+  comment_id integer [not null]
+  value smallint [not null, note: '-1 o 1']
+
+  indexes {
+    (student_id, comment_id) [pk]
+  }
+}
+
+Table student_course_status {
+  student_id integer [not null]
+  course_code char(4) [not null]
+  status course_status [not null, note: 'fila ausente = pendiente']
+
+  indexes {
+    (student_id, course_code) [pk]
+  }
+}
+
+// -----------------------------------------------------------------------
+// Relaciones (con la política de ON DELETE de cada FK)
+// -----------------------------------------------------------------------
+
+Ref: course_prerequisite.course_code > course.code [delete: cascade]
+Ref: course_prerequisite.prerequisite_code > course.code [delete: cascade]
+
+Ref: course_professor.course_code > course.code [delete: cascade]
+Ref: course_professor.professor_id > professor.id [delete: cascade]
+
+Ref: post.student_id > student.id [delete: restrict]
+Ref: post.course_code > course.code [delete: cascade]
+Ref: post.professor_id > professor.id [delete: set null]
+
+Ref: comment.post_id > post.id [delete: cascade]
+Ref: comment.student_id > student.id [delete: restrict]
+Ref: comment.parent_comment_id > comment.id [delete: cascade]
+
+Ref: post_vote.student_id > student.id [delete: cascade]
+Ref: post_vote.post_id > post.id [delete: cascade]
+
+Ref: comment_vote.student_id > student.id [delete: cascade]
+Ref: comment_vote.comment_id > comment.id [delete: cascade]
+
+Ref: student_course_status.student_id > student.id [delete: cascade]
+Ref: student_course_status.course_code > course.code [delete: cascade]
