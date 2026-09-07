@@ -92,7 +92,7 @@ Monorepo con las tres partes separadas por carpeta:
 │   ├── 001_schema.sql         Tipos ENUM, tablas, índices
 │   ├── 002_seed_courses.sql   Los 75 cursos del pensum y sus 123 prerrequisitos
 │   ├── 003_seed_professors.sql  44 catedráticos y 61 auxiliares reales
-│   ├── 004_seed_demo.sql      Estudiantes, publicaciones y comentarios de ejemplo
+│   ├── 004_seed_demo.sql      Datos de ejemplo (opcional, solo desarrollo local)
 │   └── schema.dbml            Fuente del diagrama (dbdiagram.io)
 │
 ├── backend/                   API REST (Node + Express)
@@ -195,6 +195,12 @@ tabla no puede referenciar por clave foránea a otra que todavía no existe.
 Los datos de `002` y `003` son **reales**: el pensum completo de ECYS con sus prerrequisitos verificados
 contra la imagen oficial de la red de estudios, y los catedráticos y auxiliares del horario publicado
 para el segundo semestre 2026.
+
+> **`004_seed_demo.sql` es opcional y solo para desarrollo local.** Contiene estudiantes,
+> publicaciones y comentarios inventados, útiles para ver la aplicación con contenido sin tener que
+> escribirlo a mano. **En producción no está cargado**: se eliminó una vez terminado el desarrollo,
+> para que las publicaciones reales fueran las primeras. Los tres archivos anteriores sí son
+> indispensables — sin el pensum y los catedráticos no se puede publicar nada.
 
 ---
 
@@ -660,10 +666,10 @@ de la barra superior).
 Ejecutar en orden, en el editor SQL de Neon o con `psql`:
 
 ```
-db/001_schema.sql
-db/002_seed_courses.sql
-db/003_seed_professors.sql
-db/004_seed_demo.sql
+db/001_schema.sql            Tablas y tipos
+db/002_seed_courses.sql      Pensum
+db/003_seed_professors.sql   Catedráticos
+db/004_seed_demo.sql         Opcional: datos de ejemplo para no arrancar con la app vacía
 ```
 
 ### 2. Backend
