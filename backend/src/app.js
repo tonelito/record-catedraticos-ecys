@@ -11,7 +11,31 @@ import studentsRouter from './routes/students.js';
 
 export const app = express();
 
-app.use(cors({ origin: process.env.CORS_ORIGIN }));
+// CORS_ORIGIN acepta varios orígenes separados por coma, porque en la práctica
+// hacen falta al menos tres: el Vite local, la URL de producción de Vercel y
+// las URLs únicas que Vercel le da a cada despliegue (*.vercel.app).
+const allowedOrigins = (process.env.CORS_ORIGIN ?? '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+function isAllowedOrigin(origin) {
+  // Sin cabecera Origin no es una petición de navegador (curl, Postman, el
+  // propio Render revisando /health): no hay nada que bloquear.
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+
+  // Cualquier despliegue del proyecto en Vercel, incluidas las previews.
+  return /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin);
+}
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      callback(null, isAllowedOrigin(origin));
+    },
+  })
+);
 app.use(express.json());
 
 app.get('/health', (req, res) => {
