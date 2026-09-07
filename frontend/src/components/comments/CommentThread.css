@@ -1,0 +1,15 @@
+.comment-thread {
+  width: 100%;
+  max-width: var(--width-feed);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-thread-empty {
+  width: 100%;
+  max-width: var(--width-feed);
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--neutral-400);
+}

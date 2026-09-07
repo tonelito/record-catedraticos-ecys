@@ -1,0 +1,171 @@
+.comment-item {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-votes {
+  width: 30px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding-top: 2px;
+}
+
+.comment-vote {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--neutral-300);
+  cursor: pointer;
+}
+
+.comment-vote:hover:not(:disabled) {
+  color: var(--neutral-500);
+}
+
+.comment-vote--up-active,
+.comment-vote--up-active:hover:not(:disabled) {
+  color: var(--color-orange-title);
+}
+
+.comment-vote--down-active,
+.comment-vote--down-active:hover:not(:disabled) {
+  color: var(--color-slate-section);
+}
+
+.comment-score {
+  font-size: 11.5px;
+  font-weight: 900;
+  color: var(--color-ink);
+}
+
+.comment-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comment-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--neutral-400);
+}
+
+.comment-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-slate-section);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.comment-author {
+  font-weight: 900;
+  color: var(--color-ink);
+  font-size: 12.5px;
+  text-decoration: none;
+}
+
+.comment-content {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--neutral-600);
+  text-wrap: pretty;
+}
+
+.comment-reply-toggle {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--neutral-400);
+  cursor: pointer;
+}
+
+.comment-reply-toggle:hover {
+  color: var(--color-orange-title);
+}
+
+.comment-error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-orange-hover);
+}
+
+.comment-reply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-reply-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 50px;
+  padding: 8px 10px;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-ink);
+  outline: none;
+  resize: vertical;
+}
+
+.comment-reply-input:focus {
+  border-color: var(--color-orange-title);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.14);
+}
+
+.comment-reply-submit {
+  align-self: flex-end;
+  height: 30px;
+  padding: 0 14px;
+  border: none;
+  border-radius: var(--radius-control);
+  background: var(--color-orange-title);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.comment-reply-submit:hover:not(:disabled) {
+  background: var(--color-orange-hover);
+}
+
+.comment-reply-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Cada nivel de respuestas se indenta con un borde guía, en vez de calcular
+   el margen a partir de depth: el margen se acumula solo, de forma natural,
+   porque cada CommentItem hijo vuelve a envolver a los suyos. */
+.comment-children {
+  margin-left: 14px;
+  padding-left: 14px;
+  border-left: 2px solid var(--neutral-100);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
