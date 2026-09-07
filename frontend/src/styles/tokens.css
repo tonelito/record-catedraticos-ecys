@@ -53,11 +53,16 @@
   --area-desarrollo: #76933b;
   --area-ciencias: #ffc000;
 
-  /* Overlays de estado sobre un tile de curso */
+  /* Overlays de estado sobre un tile de curso. El mock traía además una marca
+     circular blanca (✓ / •) encima del velo; se quitó porque el verde y el
+     azul solos se leen mejor. */
   --status-aprobado-overlay: rgba(29, 120, 66, 0.45);
-  --status-aprobado-mark: #166534;
   --status-cursando-overlay: rgba(23, 84, 166, 0.42);
-  --status-cursando-mark: #1754a6;
+
+  /* Puntos de color del menú de estado (más claros que las marcas del velo) */
+  --status-aprobado-dot: #1d7842;
+  --status-cursando-dot: #1754a6;
+  --status-pendiente-dot: #b7b9bd;
 
   /* Tipografía */
   --font-sans: 'Lato', -apple-system, Helvetica, Arial, sans-serif;

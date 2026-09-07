@@ -2,6 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import { query } from '../db.js';
 import { asyncHandler } from '../lib/asyncHandler.js';
+import { fetchCurriculum } from '../lib/curriculum.js';
 import { requireAuth } from '../middleware/auth.js';
 
 const router = Router();
@@ -40,7 +41,27 @@ router.patch(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, currentPassword } = req.body;
+
+    // Cambiar correo o contraseña exige volver a probar quién sos. Sin esto,
+    // una sesión abierta y olvidada le alcanzaría a cualquiera para cambiar la
+    // contraseña y dejar al dueño fuera de su propia cuenta.
+    if (!currentPassword) {
+      return res.status(400).json({ error: 'Se requiere la contraseña actual.' });
+    }
+
+    const account = await query(`select password_hash from student where id = $1`, [
+      req.student.id,
+    ]);
+
+    const passwordMatches = await bcrypt.compare(
+      currentPassword,
+      account.rows[0].password_hash
+    );
+
+    if (!passwordMatches) {
+      return res.status(401).json({ error: 'La contraseña actual no es correcta.' });
+    }
 
     const fields = [];
     const values = [];
@@ -89,25 +110,7 @@ router.get(
   '/courses',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const result = await query(
-      `
-      select
-        c.code,
-        c.name,
-        c.credits,
-        c.area,
-        c.is_mandatory,
-        c.semester,
-        coalesce(scs.status, 'pendiente') as status
-      from course c
-      left join student_course_status scs
-        on scs.course_code = c.code and scs.student_id = $1
-      order by c.semester, c.code
-      `,
-      [req.student.id]
-    );
-
-    res.json(result.rows);
+    res.json(await fetchCurriculum(req.student.id));
   })
 );
 

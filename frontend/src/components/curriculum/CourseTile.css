@@ -1,0 +1,119 @@
+/* La malla es el lenguaje visual "denso" del design system: tiles planos,
+   radio 2-3px y tipografía de 8-10px. No se mezcla con las tarjetas blancas
+   de 8px y sombra suave del resto de la app. */
+
+.course-tile-wrapper {
+  position: relative;
+}
+
+.course-tile {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--course-bg);
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+.course-tile--interactive {
+  cursor: pointer;
+}
+
+.course-tile--interactive:hover {
+  outline: 1.5px solid var(--color-orange-title);
+}
+
+.course-tile-area {
+  width: 8px;
+  flex: none;
+}
+
+.course-tile-codes {
+  width: 29px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-tile-code {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--course-prereq-bg);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.course-tile-credits {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--course-credits-bg);
+  color: var(--course-text);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.course-tile-name {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 5px;
+  background: var(--course-bg);
+  color: var(--course-text);
+  font-size: 9.5px;
+  line-height: 1.2;
+}
+
+/* Punto de curso obligatorio, convención de la malla oficial de ECYS. */
+.course-tile-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--course-text);
+  flex: none;
+}
+
+.course-tile-prereqs {
+  width: 30px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  box-sizing: border-box;
+  background: var(--course-prereq-bg);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  /* Un código por línea: el join('\n') del JSX se respeta gracias a esto. */
+  white-space: pre-line;
+}
+
+/* El velo cubre el tile entero y no intercepta clics: el que recibe el clic
+   sigue siendo el botón de abajo. */
+.course-tile-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.course-tile-overlay--aprobado {
+  background: var(--status-aprobado-overlay);
+}
+
+.course-tile-overlay--cursando {
+  background: var(--status-cursando-overlay);
+}

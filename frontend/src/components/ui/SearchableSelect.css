@@ -1,31 +1,72 @@
-.filter-pill {
+.searchable-select {
   position: relative;
 }
 
-.filter-pill-button {
+/* La variante de campo ocupa todo el ancho de su celda del formulario. */
+.searchable-select--field {
+  width: 100%;
+  min-width: 0;
+}
+
+.searchable-select-trigger {
   display: inline-flex;
   align-items: center;
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+/* --- Variante "pill": barra de filtros del dashboard --- */
+.searchable-select-trigger--pill {
   gap: var(--space-2);
   height: 32px;
   padding: 0 12px;
   border: 1px solid var(--neutral-300);
   border-radius: var(--radius-pill);
-  background: var(--color-surface);
   color: var(--neutral-500);
-  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 700;
-  cursor: pointer;
 }
 
 /* Con un valor seleccionado la pill se oscurece, como en el mock. */
-.filter-pill-button--active {
+.searchable-select-trigger--active {
   border-color: var(--color-slate-section);
   background: var(--color-slate-section);
   color: #fff;
 }
 
-.filter-pill-menu {
+/* --- Variante "field": campo de formulario --- */
+.searchable-select-trigger--field {
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  gap: var(--space-2);
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-control);
+  color: var(--color-ink);
+  font-size: 14.5px;
+  text-align: left;
+}
+
+/* Borde naranja = campo obligatorio, según el mock 1g. */
+.searchable-select-trigger--highlight {
+  border-color: var(--color-orange-title);
+}
+
+.searchable-select-trigger--field > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.searchable-select-placeholder {
+  color: var(--neutral-400);
+}
+
+/* --- Menú desplegable, común a las dos variantes --- */
+.searchable-select-menu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
@@ -40,7 +81,12 @@
   box-shadow: var(--shadow-menu);
 }
 
-.filter-pill-search {
+/* En un formulario el menú se alinea al ancho del campo, no a 320px fijos. */
+.searchable-select--field .searchable-select-menu {
+  width: 100%;
+}
+
+.searchable-select-search {
   width: 100%;
   height: 34px;
   padding: 0 10px;
@@ -54,12 +100,12 @@
   outline: none;
 }
 
-.filter-pill-search:focus {
+.searchable-select-search:focus {
   border-color: var(--color-orange-title);
   box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.14);
 }
 
-.filter-pill-options {
+.searchable-select-options {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -67,7 +113,7 @@
   overflow-y: auto;
 }
 
-.filter-pill-options button {
+.searchable-select-options button {
   width: 100%;
   padding: 7px 10px;
   border: none;
@@ -80,17 +126,17 @@
   cursor: pointer;
 }
 
-.filter-pill-options button:hover {
+.searchable-select-options button:hover {
   background: var(--neutral-50);
 }
 
-.filter-pill-options button.is-selected {
+.searchable-select-options button.is-selected {
   background: var(--color-orange-tint);
   color: var(--color-orange-title);
   font-weight: 700;
 }
 
-.filter-pill-empty {
+.searchable-select-empty {
   padding: 7px 10px;
   font-size: 13px;
   color: var(--neutral-400);

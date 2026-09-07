@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Plus, SlidersHorizontal } from "lucide-react";
 import AppNavbar from "../components/layout/AppNavbar.jsx";
 import PostCard from "../components/feed/PostCard.jsx";
-import FilterPill from "../components/feed/FilterPill.jsx";
+import SearchableSelect from "../components/ui/SearchableSelect.jsx";
 import { api } from "../api/client.js";
 import "./Dashboard.css";
 
@@ -158,14 +158,16 @@ function Dashboard() {
             <div className="dashboard-filters">
               <span className="dashboard-filters-label">Filtrar</span>
 
-              <FilterPill
+              <SearchableSelect
+                variant="pill"
                 label="Curso"
                 value={courseCode}
                 options={courseOptions}
                 onChange={handleCourseChange}
               />
 
-              <FilterPill
+              <SearchableSelect
+                variant="pill"
                 label="Catedrático"
                 value={professorId}
                 options={professorOptions}

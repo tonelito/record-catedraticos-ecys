@@ -1,0 +1,128 @@
+.edit-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.edit-tab {
+  padding: 8px 14px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--neutral-400);
+  cursor: pointer;
+}
+
+.edit-tab--active {
+  font-weight: 900;
+  color: var(--color-ink);
+  border-bottom-color: var(--color-orange-title);
+}
+
+.edit-body {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.edit-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+
+.edit-required {
+  color: var(--color-orange-title);
+}
+
+.edit-field input {
+  height: 40px;
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-ink);
+  outline: none;
+}
+
+.edit-field input:focus {
+  border-color: var(--color-orange-title);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.14);
+}
+
+.edit-field input[readonly] {
+  background: var(--neutral-50);
+  border-color: var(--neutral-100);
+  color: var(--neutral-400);
+}
+
+.edit-divider {
+  height: 1px;
+  background: var(--neutral-100);
+}
+
+.edit-error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-orange-hover);
+}
+
+.edit-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 22px;
+  background: var(--neutral-50);
+  border-top: 1px solid var(--neutral-100);
+}
+
+.edit-cancel,
+.edit-submit {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.edit-cancel {
+  border: 1px solid var(--neutral-300);
+  background: var(--color-surface);
+  color: var(--neutral-500);
+}
+
+.edit-cancel:hover {
+  background: var(--neutral-50);
+}
+
+.edit-submit {
+  border: none;
+  background: var(--color-orange-title);
+  color: #fff;
+}
+
+.edit-submit:hover:not(:disabled) {
+  background: var(--color-orange-hover);
+}
+
+.edit-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

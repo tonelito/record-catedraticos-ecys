@@ -35,7 +35,14 @@ export function SessionProvider({ children }) {
     setStudent(null);
   }
 
-  const value = { student, loading, login, register, logout };
+  // Refleja en la sesión los campos que devuelve PATCH /profile, para que el
+  // resto de la app (por ejemplo el correo del perfil) no quede desactualizado
+  // hasta la próxima recarga.
+  function updateStudent(fields) {
+    setStudent((previous) => ({ ...previous, ...fields }));
+  }
+
+  const value = { student, loading, login, register, logout, updateStudent };
 
   return <SessionContext.Provider value={value}>{children}</SessionContext.Provider>;
 }

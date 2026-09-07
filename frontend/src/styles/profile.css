@@ -1,0 +1,143 @@
+/* Estilos compartidos por las dos pantallas de perfil (1i y 1k), igual que
+   auth.css lo hace con Login y Register. Lo propio de cada una vive en su
+   archivo: MyProfile.css (correo/contraseña) y StudentProfile.css (migaja de
+   navegación, badge de solo lectura, línea de actividad). */
+
+.profile-layout {
+  min-height: calc(100vh - 58px);
+  background: var(--neutral-50);
+  padding: 26px 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: var(--width-container);
+  background: var(--color-surface);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: 14px 22px;
+  background: var(--neutral-50);
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.profile-card-header h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--color-ink);
+}
+
+.profile-card-header p {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: var(--neutral-400);
+}
+
+.profile-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* --- Identidad --- */
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+/* En el MVP no se suben imágenes: siempre esta silueta. */
+.profile-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--neutral-100);
+  color: var(--neutral-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-names {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-names h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--color-ink);
+  line-height: 1.15;
+}
+
+.profile-names p {
+  margin: 3px 0 0;
+  font-size: 14px;
+  color: var(--neutral-400);
+}
+
+.profile-credits {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: var(--color-orange-tint);
+}
+
+.profile-credits-number {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--color-orange-title);
+}
+
+.profile-credits-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-orange-hover);
+}
+
+/* --- Estados de carga --- */
+.profile-note {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--neutral-400);
+}
+
+.profile-error {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--color-orange-hover);
+}
+
+@media (max-width: 560px) {
+  .profile-layout {
+    padding: var(--space-4);
+  }
+
+  .profile-card-body {
+    padding: var(--space-4);
+  }
+}

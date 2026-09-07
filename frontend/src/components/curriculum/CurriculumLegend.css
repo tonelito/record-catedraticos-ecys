@@ -1,0 +1,43 @@
+.curriculum-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--neutral-500);
+}
+
+.curriculum-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Muestra en miniatura del tile, con el mismo velo que usa la malla. */
+.curriculum-legend-tile {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--course-bg);
+  flex: none;
+}
+
+.curriculum-legend-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+}
+
+.curriculum-legend-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--neutral-200);
+}
+
+.curriculum-legend-area {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: none;
+}

@@ -1,0 +1,69 @@
+/* Lo compartido con StudentProfile vive en styles/profile.css. Aquí solo lo
+   que es exclusivo del perfil propio: los campos de correo y contraseña. */
+
+.profile-fields {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 12px;
+  max-width: 640px;
+  align-items: end;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.profile-field-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+
+.profile-field-value {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  color: var(--color-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-edit {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--color-orange-title);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-orange-title);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-edit:hover:not(:disabled) {
+  background: var(--color-orange-tint);
+}
+
+.profile-edit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 560px) {
+  .profile-fields {
+    grid-template-columns: 1fr;
+  }
+}

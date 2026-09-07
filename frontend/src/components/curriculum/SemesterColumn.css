@@ -1,0 +1,42 @@
+.semester-column {
+  width: 204px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.semester-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--neutral-200);
+}
+
+.semester-number {
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 0.85;
+  color: var(--neutral-200);
+}
+
+.semester-label {
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: right;
+  color: var(--color-orange-title);
+  /* Respeta el \n del JSX: "PRIMER" arriba y "SEMESTRE" abajo. */
+  white-space: pre-line;
+}
+
+.semester-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 7px;
+  border: 1.5px solid var(--color-orange-title);
+  border-radius: 3px;
+}
