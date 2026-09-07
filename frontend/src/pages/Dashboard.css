@@ -1,0 +1,132 @@
+.dashboard-layout {
+  display: flex;
+  min-height: calc(100vh - 58px);
+  background: var(--neutral-50);
+}
+
+.dashboard-sidebar {
+  width: 60px;
+  flex: none;
+  background: var(--color-surface);
+  border-right: 1px solid var(--neutral-200);
+  padding: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-sidebar-button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dashboard-sidebar-button--soft {
+  background: var(--color-orange-tint);
+  color: var(--color-orange-title);
+}
+
+.dashboard-sidebar-button--primary {
+  background: var(--color-orange-title);
+  color: #fff;
+}
+
+.dashboard-sidebar-button--primary:hover {
+  background: var(--color-orange-hover);
+}
+
+.dashboard-sidebar-rule {
+  width: 26px;
+  height: 1px;
+  background: var(--neutral-100);
+  margin: var(--space-1) 0;
+}
+
+/* Leyenda de áreas: solo informativa, con el nombre del área en el tooltip. */
+.dashboard-area-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.dashboard {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-5) var(--space-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.dashboard-filters {
+  width: 100%;
+  max-width: var(--width-feed);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dashboard-filters-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--neutral-400);
+  margin-right: 2px;
+}
+
+.dashboard-filters-spacer {
+  flex: 1;
+}
+
+.dashboard-count {
+  font-size: 12.5px;
+  color: var(--neutral-400);
+}
+
+.dashboard-note {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--neutral-400);
+}
+
+.dashboard-error {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--color-orange-hover);
+}
+
+/* En pantallas angostas la barra lateral pasa a ser una franja horizontal. */
+@media (max-width: 760px) {
+  .dashboard-layout {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid var(--neutral-200);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .dashboard-sidebar-rule {
+    width: 1px;
+    height: 26px;
+    margin: 0 var(--space-1);
+  }
+
+  .dashboard {
+    padding: var(--space-4);
+  }
+}

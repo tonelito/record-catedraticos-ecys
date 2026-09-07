@@ -3,6 +3,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import CreatePost from './pages/CreatePost.jsx';
+import PostDetail from './pages/PostDetail.jsx';
 import MyProfile from './pages/MyProfile.jsx';
 import StudentProfile from './pages/StudentProfile.jsx';
 import RequireAuth from './components/RequireAuth.jsx';
@@ -27,6 +28,14 @@ function App() {
           element={
             <RequireAuth>
               <CreatePost />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/posts/:id"
+          element={
+            <RequireAuth>
+              <PostDetail />
             </RequireAuth>
           }
         />
