@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useSession } from "../context/SessionContext.jsx";
-import "../styles/auth.css";
+import { useSession } from "../../context/SessionContext.jsx";
+import "../../styles/auth.css";
 import "./Register.css";
 
 function Register() {

@@ -1,4 +1,4 @@
-import AppNavbar from '../components/AppNavbar.jsx';
+import AppNavbar from "../../components/layout/AppNavbar.jsx";
 
 function PostDetail() {
   return (

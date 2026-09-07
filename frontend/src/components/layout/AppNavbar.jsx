@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { House, LogOut, Search, User } from 'lucide-react';
-import { useSession } from '../context/SessionContext.jsx';
+import { useSession } from '../../context/SessionContext.jsx';
 import './AppNavbar.css';
 
 function AppNavbar() {

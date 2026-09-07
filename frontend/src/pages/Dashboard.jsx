@@ -1,16 +1,28 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, SlidersHorizontal } from 'lucide-react';
-import AppNavbar from '../components/AppNavbar.jsx';
-import PostCard from '../components/PostCard.jsx';
-import FilterPill from '../components/FilterPill.jsx';
-import { api } from '../api/client.js';
-import './Dashboard.css';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Plus, SlidersHorizontal } from "lucide-react";
+import AppNavbar from "../components/layout/AppNavbar.jsx";
+import PostCard from "../components/feed/PostCard.jsx";
+import FilterPill from "../components/feed/FilterPill.jsx";
+import { api } from "../api/client.js";
+import "./Dashboard.css";
 
 const AREAS = [
-  { value: 'metodologia', label: 'Metodología de Sistemas', color: 'var(--area-metodologia)' },
-  { value: 'desarrollo', label: 'Desarrollo de Software', color: 'var(--area-desarrollo)' },
-  { value: 'ciencias', label: 'Ciencias de la Computación', color: 'var(--area-ciencias)' },
+  {
+    value: "metodologia",
+    label: "Metodología de Sistemas",
+    color: "var(--area-metodologia)",
+  },
+  {
+    value: "desarrollo",
+    label: "Desarrollo de Software",
+    color: "var(--area-desarrollo)",
+  },
+  {
+    value: "ciencias",
+    label: "Ciencias de la Computación",
+    color: "var(--area-ciencias)",
+  },
 ];
 
 function Dashboard() {
@@ -27,20 +39,28 @@ function Dashboard() {
 
   // El pensum no cambia: se pide una sola vez.
   useEffect(() => {
-    api.get('/courses').then(setCourses).catch(() => setCourses([]));
+    api
+      .get("/courses")
+      .then(setCourses)
+      .catch(() => setCourses([]));
   }, []);
 
   // La lista de catedráticos depende del curso elegido.
   useEffect(() => {
-    const path = courseCode ? `/professors?courseCode=${courseCode}` : '/professors';
-    api.get(path).then(setProfessors).catch(() => setProfessors([]));
+    const path = courseCode
+      ? `/professors?courseCode=${courseCode}`
+      : "/professors";
+    api
+      .get(path)
+      .then(setProfessors)
+      .catch(() => setProfessors([]));
   }, [courseCode]);
 
   // El feed se vuelve a pedir cada vez que cambia un filtro.
   useEffect(() => {
     const params = new URLSearchParams();
-    if (courseCode) params.set('courseCode', courseCode);
-    if (professorId) params.set('professorId', professorId);
+    if (courseCode) params.set("courseCode", courseCode);
+    if (professorId) params.set("professorId", professorId);
 
     const query = params.toString();
 
@@ -49,7 +69,7 @@ function Dashboard() {
     let ignore = false;
 
     api
-      .get(query ? `/posts?${query}` : '/posts')
+      .get(query ? `/posts?${query}` : "/posts")
       .then((data) => {
         if (!ignore) setPosts(data);
       })
@@ -83,7 +103,7 @@ function Dashboard() {
   }
 
   const courseOptions = [
-    { value: null, label: 'todos' },
+    { value: null, label: "todos" },
     ...courses.map((course) => ({
       value: course.code,
       label: `${course.code} · ${course.name}`,
@@ -91,7 +111,7 @@ function Dashboard() {
   ];
 
   const professorOptions = [
-    { value: null, label: 'todos' },
+    { value: null, label: "todos" },
     ...professors.map((professor) => ({
       value: professor.id,
       label: professor.complete_name,
@@ -107,7 +127,7 @@ function Dashboard() {
           <button
             type="button"
             className="dashboard-sidebar-button dashboard-sidebar-button--soft"
-            title={filtersVisible ? 'Ocultar filtros' : 'Mostrar filtros'}
+            title={filtersVisible ? "Ocultar filtros" : "Mostrar filtros"}
             onClick={() => setFiltersVisible((previous) => !previous)}
           >
             <SlidersHorizontal size={18} strokeWidth={2.1} />
@@ -155,7 +175,8 @@ function Dashboard() {
               <span className="dashboard-filters-spacer" />
 
               <span className="dashboard-count">
-                {posts.length} {posts.length === 1 ? 'publicación' : 'publicaciones'}
+                {posts.length}{" "}
+                {posts.length === 1 ? "publicación" : "publicaciones"}
               </span>
             </div>
           )}
@@ -163,7 +184,9 @@ function Dashboard() {
           {loading && <p className="dashboard-note">Cargando publicaciones…</p>}
           {error && <p className="dashboard-error">{error}</p>}
           {!loading && !error && posts.length === 0 && (
-            <p className="dashboard-note">No hay publicaciones con esos filtros.</p>
+            <p className="dashboard-note">
+              No hay publicaciones con esos filtros.
+            </p>
           )}
 
           {posts.map((post) => (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Share2 } from 'lucide-react';
-import { api } from '../api/client.js';
+import { api } from '../../api/client.js';
 import './PostCard.css';
 
 const AREA_COLORS = {

@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useSession } from '../context/SessionContext.jsx';
-import '../styles/auth.css';
-import './Login.css';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useSession } from "../../context/SessionContext.jsx";
+import "../../styles/auth.css";
+import "./Login.css";
 
 function Login() {
   const { login } = useSession();
   const navigate = useNavigate();
 
-  const [identifier, setIdentifier] = useState('');
-  const [password, setPassword] = useState('');
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -21,7 +21,7 @@ function Login() {
 
     try {
       await login(identifier, password, remember);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -33,10 +33,18 @@ function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-brand">
-          <img src="/assets/logo-ecys-fiusac.png" alt="ECYS" className="auth-logo" />
+          <img
+            src="/assets/logo-ecys-fiusac.png"
+            alt="ECYS"
+            className="auth-logo"
+          />
           <div className="auth-brand-text">
-            <span className="auth-university">Universidad de San Carlos de Guatemala</span>
-            <span className="auth-faculty">Facultad de Ingeniería · Escuela de Ciencias y Sistemas</span>
+            <span className="auth-university">
+              Universidad de San Carlos de Guatemala
+            </span>
+            <span className="auth-faculty">
+              Facultad de Ingeniería · Escuela de Ciencias y Sistemas
+            </span>
           </div>
         </div>
 
@@ -44,7 +52,10 @@ function Login() {
 
         <div className="auth-heading">
           <h1>Iniciar sesión</h1>
-          <p>Ingresá con tu registro académico para ver el récord de catedráticos.</p>
+          <p>
+            Ingresá con tu registro académico para ver el récord de
+            catedráticos.
+          </p>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -84,7 +95,7 @@ function Login() {
           {error && <p className="auth-error">{error}</p>}
 
           <button type="submit" className="auth-submit" disabled={submitting}>
-            {submitting ? 'Ingresando...' : 'Iniciar sesión'}
+            {submitting ? "Ingresando..." : "Iniciar sesión"}
           </button>
 
           <span className="auth-link-muted" title="Próximamente disponible">
